@@ -1,12 +1,30 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <meta http-equiv="refresh" content="0; url=https://www.youtube.com/@kenoxgamings" />
-  <script>
-    window.location.href = "https://www.youtube.com/@kenoxgamings";
-  </script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Open Kenox Gaming</title>
+<script>
+  // YouTube channel links
+  const androidIntent = "intent://www.youtube.com/@kenoxgamings#Intent;package=com.google.android.youtube;scheme=https;end";
+  const youtubeWeb = "https://www.youtube.com/@kenoxgamings";
+
+  // Detect device
+  const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+
+  if (/android/i.test(userAgent)) {
+    // Android: open intent link
+    window.location.href = androidIntent;
+  } else if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+    // iOS: open YouTube app via universal link
+    window.location.href = youtubeWeb;
+  } else {
+    // Desktop fallback
+    window.location.href = youtubeWeb;
+  }
+</script>
 </head>
 <body>
-  Redirecting to Kenox Gaming...
+<p>Redirecting to Kenox Gaming...</p>
 </body>
 </html>
