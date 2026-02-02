@@ -7,20 +7,23 @@
 <script>
   // YouTube channel links
   const androidIntent = "intent://www.youtube.com/@kenoxgamings#Intent;package=com.google.android.youtube;scheme=https;end";
+  const iosAppLink = "youtube://www.youtube.com/@kenoxgamings";
   const youtubeWeb = "https://www.youtube.com/@kenoxgamings";
 
-  // Detect device
   const userAgent = navigator.userAgent || navigator.vendor || window.opera;
 
   if (/android/i.test(userAgent)) {
-    // Android: open intent link
-    window.location.href = androidIntent;
+      // Android: open YouTube app via intent link
+      window.location.href = androidIntent;
   } else if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
-    // iOS: open YouTube app via universal link
-    window.location.href = youtubeWeb;
+      // iOS: try opening YouTube app, fallback to web after 1s
+      window.location.href = iosAppLink;
+      setTimeout(() => {
+          window.location.href = youtubeWeb;
+      }, 1000);
   } else {
-    // Desktop fallback
-    window.location.href = youtubeWeb;
+      // Desktop / fallback
+      window.location.href = youtubeWeb;
   }
 </script>
 </head>
